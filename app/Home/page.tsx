@@ -38,7 +38,7 @@ const zillaSlab = Zilla_Slab({
 
 export default function Home() {
   // State to control animation sequencing
-  const [titleDone, setTitleDone] = useState(false);
+  const [titleDone] = useState(false);
   const [descriptionDone, setDescriptionDone] = useState(false);
   const [showHeroButton, setShowHeroButton] = useState(false);
 
@@ -163,62 +163,21 @@ export default function Home() {
                   </div>
 
                   {/* Faith, Family, Fellowship */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      duration: 1.2,
-                      delay: 0.6,
-                      type: "spring",
-                      bounce: 0.4,
-                    }}
-                    className="w-full h-[80px] relative"
-                  >
-                    <motion.h3
+                  {/* Animation removed from this section */}
+                  <div className="w-full h-[80px] relative">
+                    <h3
                       className={`${outfit.className} font-[700] text-[64px] tracking-[0.02em] text-white drop-shadow-2xl`}
                       style={{
                         textShadow:
                           "3px 6px 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5)",
                       }}
-                      initial={{ backgroundPosition: "200% 0" }}
-                      animate={{
-                        backgroundPosition: "0 0",
-                        transition: {
-                          duration: 2,
-                          delay: 1.2,
-                          repeat: Infinity,
-                          repeatType: "reverse",
-                        },
-                      }}
-                      whileHover={{
-                        scale: 1.02,
-                        transition: { duration: 0.2 },
-                      }}
                     >
-                      <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.8 }}
-                      >
-                        FAITH,{" "}
-                      </motion.span>
-                      <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 1.0 }}
-                      >
-                        FAMILY,{" "}
-                      </motion.span>
-                      <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 1.2 }}
-                        onAnimationComplete={() => setTitleDone(true)}
-                      >
-                        FELLOWSHIP
-                      </motion.span>
-                    </motion.h3>
-                  </motion.div>
+                      <span className="inline-block mr-2">FAITH, </span>
+                      <span className="inline-block mr-2">FAMILY, </span>
+                      <span className="inline-block">FELLOWSHIP</span>
+                    </h3>
+                  </div>
+                  {/* End animation removed */}
                 </div>
               </div>
             </div>
@@ -384,85 +343,55 @@ export default function Home() {
                   }}
                 >
                   <motion.span
-                    initial={{ opacity: 0, y: 20, rotateX: 90 }}
-                    animate={
-                      titleDone
-                        ? { opacity: 1, y: 0, rotateX: 0 }
-                        : { opacity: 0, y: 20, rotateX: 90 }
-                    }
-                    transition={{ duration: 0.6, delay: 0 }}
-                    className="inline-block mr-2"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
                   >
                     Join us at
                   </motion.span>
                   <motion.span
-                    initial={{ opacity: 0, y: 20, rotateX: 90 }}
-                    animate={
-                      titleDone
-                        ? { opacity: 1, y: 0, rotateX: 0 }
-                        : { opacity: 0, y: 20, rotateX: 90 }
-                    }
-                    transition={{ duration: 0.6, delay: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.0 }}
                     className="inline-block text-white font-[800] mr-2"
                   >
                     St. Mary and St. Maurice&apos;s
                   </motion.span>
                   <motion.span
-                    initial={{ opacity: 0, y: 20, rotateX: 90 }}
-                    animate={
-                      titleDone
-                        ? { opacity: 1, y: 0, rotateX: 0 }
-                        : { opacity: 0, y: 20, rotateX: 90 }
-                    }
-                    transition={{ duration: 0.6, delay: 0 }}
-                    className="inline-block mr-2"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.2 }}
                   >
                     Coptic Orthodox Church, where
                   </motion.span>
                   <motion.span
-                    initial={{ opacity: 0, y: 20, rotateX: 90 }}
-                    animate={
-                      titleDone
-                        ? { opacity: 1, y: 0, rotateX: 0 }
-                        : { opacity: 0, y: 20, rotateX: 90 }
-                    }
-                    transition={{ duration: 0.6, delay: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.2 }}
                     className="inline-block mr-2"
                   >
                     <span className="relative z-10">ancient traditions</span>
                   </motion.span>
                   <motion.span
-                    initial={{ opacity: 0, y: 20, rotateX: 90 }}
-                    animate={
-                      titleDone
-                        ? { opacity: 1, y: 0, rotateX: 0 }
-                        : { opacity: 0, y: 20, rotateX: 90 }
-                    }
-                    transition={{ duration: 0.6, delay: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.2 }}
                     className="inline-block mr-2"
                   >
                     meet
                   </motion.span>
                   <motion.span
-                    initial={{ opacity: 0, y: 20, rotateX: 90 }}
-                    animate={
-                      titleDone
-                        ? { opacity: 1, y: 0, rotateX: 0 }
-                        : { opacity: 0, y: 20, rotateX: 90 }
-                    }
-                    transition={{ duration: 0.6, delay: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.2 }}
                     className="inline-block mr-2"
                   >
                     <span className="relative z-10">modern hearts</span>
                   </motion.span>
                   <motion.span
-                    initial={{ opacity: 0, y: 20, rotateX: 90 }}
-                    animate={
-                      titleDone
-                        ? { opacity: 1, y: 0, rotateX: 0 }
-                        : { opacity: 0, y: 20, rotateX: 90 }
-                    }
-                    transition={{ duration: 0.6, delay: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.2 }}
                     className="inline-block"
                     onAnimationComplete={() => setDescriptionDone(true)}
                   >
@@ -1235,15 +1164,3 @@ export default function Home() {
     </>
   );
 }
-
-{
-  /* Cross overlapping the triangle bottom tip - positioned to overlay everything */
-}
-<div className="absolute top-[1466px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
-  <Image
-    src="/Images/Home/WhiteCross.png"
-    alt="Gold Cross"
-    width={40}
-    height={40}
-  />
-</div>;
