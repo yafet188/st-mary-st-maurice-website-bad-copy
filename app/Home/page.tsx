@@ -318,88 +318,22 @@ export default function Home() {
 
             {/* Text and Button Section */}
             <div className="w-full h-[144px] gap-[120px] flex justify-between items-center relative z-10">
-              {/* Text */}
-              <motion.div
-                initial={{ opacity: 0, x: -100 }}
-                animate={
-                  titleDone ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }
-                }
-                transition={{
-                  duration: 1,
-                  delay: titleDone ? 0 : 0.6,
-                  type: "spring",
-                  bounce: 0.4,
-                }}
-                className="relative"
-              >
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={titleDone ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.8, delay: 0 }}
-                  className={`${outfit.className} w-full max-w-[969px] h-[144px] font-[700] text-[40px] leading-[120%] tracking-[0.02em] text-white relative z-10`}
+              {/* Add "Join us..." text here, centered and styled as in the Figma screenshot */}
+              <div className="flex-1 flex flex-col justify-center items-start">
+                <p
+                  className={`${outfit.className} max-w-[969px] font-[700] text-[40px] leading-[120%] tracking-[0.02em] text-white`}
                   style={{
                     textShadow:
                       "3px 3px 12px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.3)",
                   }}
                 >
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.8 }}
-                  >
-                    Join us at
-                  </motion.span>
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.0 }}
-                    className="inline-block text-white font-[800] mr-2"
-                  >
-                    St. Mary and St. Maurice&apos;s
-                  </motion.span>
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.2 }}
-                  >
-                    Coptic Orthodox Church, where
-                  </motion.span>
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.2 }}
-                    className="inline-block mr-2"
-                  >
-                    <span className="relative z-10">ancient traditions</span>
-                  </motion.span>
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.2 }}
-                    className="inline-block mr-2"
-                  >
-                    meet
-                  </motion.span>
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.2 }}
-                    className="inline-block mr-2"
-                  >
-                    <span className="relative z-10">modern hearts</span>
-                  </motion.span>
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.2 }}
-                    className="inline-block"
-                    onAnimationComplete={() => setDescriptionDone(true)}
-                  >
-                    in Kitchener.
-                  </motion.span>
-                </motion.p>
-              </motion.div>
-
+                  Join us at{" "}
+                  <span className="font-[800]">
+                    St. Mary and St. Maurice&apos;s Coptic Orthodox Church
+                  </span>
+                  , where ancient traditions meet modern hearts in Kitchener.
+                </p>
+              </div>
               {/* Button (no animation) */}
               {showHeroButton && (
                 <div
