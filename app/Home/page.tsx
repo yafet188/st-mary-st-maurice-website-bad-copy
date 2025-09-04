@@ -317,8 +317,8 @@ export default function Home() {
             </motion.div>
 
             {/* Text and Button Section */}
-            <div className="w-full h-[144px] gap-[120px] flex justify-between items-center relative z-10">
-              {/* Add "Join us..." text here, centered and styled as in the Figma screenshot */}
+            <div className="w-full h-[144px] flex flex-col md:flex-row gap-[32px] md:gap-[120px] items-center justify-between relative z-10">
+              {/* "Join us..." text */}
               <div className="flex-1 flex flex-col justify-center items-start">
                 <p
                   className={`${outfit.className} max-w-[969px] font-[700] text-[40px] leading-[120%] tracking-[0.02em] text-white`}
@@ -334,22 +334,17 @@ export default function Home() {
                   , where ancient traditions meet modern hearts in Kitchener.
                 </p>
               </div>
-              {/* Button (no animation) */}
-              {showHeroButton && (
-                <div
-                  className="relative z-[100]"
+              {/* Button as shown in the Figma screenshot */}
+              <div className="flex-shrink-0 mt-6 md:mt-0">
+                <button
+                  className={`${outfit.className} w-[185px] h-[45px] bg-[#171E34] text-white font-[600] text-[14px] leading-[120%] tracking-[0.02em] rounded-[8px] 
+                    flex items-center justify-center relative cursor-pointer border-2 border-transparent
+                    shadow-lg hover:shadow-xl hover:border-white/20 transition-all duration-200 ease-out overflow-hidden`}
                   style={{ pointerEvents: "auto" }}
                 >
-                  <button
-                    className={`${outfit.className} w-[185px] h-[45px] bg-[#171E34] text-white font-[600] text-[14px] leading-[120%] tracking-[0.02em] rounded-[8px] 
-                      flex items-center justify-center relative cursor-pointer border-2 border-transparent
-                      shadow-lg hover:shadow-xl hover:border-white/20 transition-all duration-200 ease-out overflow-hidden`}
-                    style={{ pointerEvents: "auto" }}
-                  >
-                    <span className="relative z-10">VISIT US THIS SUNDAY</span>
-                  </button>
-                </div>
-              )}
+                  <span className="relative z-10">VISIT US THIS SUNDAY</span>
+                </button>
+              </div>
             </div>
 
             {/* Corner Decorations - REMOVED */}
