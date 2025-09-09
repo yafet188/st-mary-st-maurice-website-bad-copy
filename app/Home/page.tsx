@@ -36,13 +36,14 @@ const zillaSlab = Zilla_Slab({
   weight: ["400", "500", "600", "700"],
 });
 
+// Main Home page component for St. Mary & St. Maurice Church
 export default function Home() {
-  // State to control animation sequencing
+  // State to control animation sequencing for header
   const [titleDone] = useState(false);
   const [descriptionDone, setDescriptionDone] = useState(false);
   const [showHeroButton, setShowHeroButton] = useState(false);
 
-  // When description is done, show the button after 2 seconds (no animation)
+  // Show button after description animation completes
   useEffect(() => {
     if (descriptionDone) {
       const timer = setTimeout(() => setShowHeroButton(true), 2000); // 2s after desc
@@ -51,23 +52,24 @@ export default function Home() {
       setShowHeroButton(false);
     }
   }, [descriptionDone]);
-  // State to track the current calendar view for dynamic triangle sizing
+
+  // State for calendar view (day/week/month)
   const [calendarView, setCalendarView] = useState<"day" | "week" | "month">(
     "day"
   );
 
-  // Function to handle calendar view changes
+  // Handle calendar view changes
   const handleCalendarViewChange = (view: "day" | "week" | "month") => {
     setCalendarView(view);
   };
 
-  // Define different triangle sizes based on calendar view
+  // Dynamic triangle shape for calendar background
   const getTriangleClipPath = () => {
     switch (calendarView) {
       case "day":
         return "polygon(50% 31.25%, 100% 0, 100% 100%, 0 100%, 0 0)"; // Larger triangle
       case "week":
-        return "polygon(50% 35.5%, 100% 0, 100% 100%, 0 100%, 0 0)"; // Medium triangle (current)
+        return "polygon(50% 35.5%, 100% 0, 100% 100%, 0 100%, 0 0)"; // Medium triangle
       case "month":
         return "polygon(50% 21.35%, 100% 0, 100% 100%, 0 100%, 0 0)"; // Smaller triangle
       default:
@@ -81,6 +83,7 @@ export default function Home() {
 
   return (
     <>
+      {/* Background image and animated overlays */}
       <div className="relative w-full min-h-screen overflow-hidden">
         {/* BACKGROUND IMAGE SECTION - St Mary Church Background */}
         <div className="absolute inset-0 z-0 bg-[#171E34]">
@@ -144,6 +147,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Header section: Living Orthodoxy, Faith, Family, Fellowship */}
         <div className="bg-gradient-to-b from-[rgba(23,30,52,0.3)] via-[rgba(23,30,52,0.2)] to-[rgba(23,30,52,0.4)] overflow-hidden">
           <div className="w-full h-[1000px] md:h-[800px] sm:h-[750px] pt-[100px] relative overflow-hidden">
             {/* 1st Header Section */}
@@ -184,7 +188,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Yellow Text Section */}
+        {/* Yellow Text Section with floating particles and join us text */}
         <motion.div
           initial={{ opacity: 0, y: 100, scale: 0.8 }}
           whileInView={{
@@ -351,7 +355,7 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* CALENDAR SECTION */}
+        {/* CALENDAR SECTION - Upcoming Events & Announcements */}
         <section className="relative w-full text-white z-50 overflow-hidden">
           {/* Red background with triangle mask (creates hollow triangle) */}
           <motion.div
@@ -508,7 +512,7 @@ export default function Home() {
         </motion.video>
       </motion.div>
 
-      {/* Youth & Kids */}
+      {/* Youth & Kids Services Section */}
       <ImageTextBlock
         inverted={false}
         showTag={true}
@@ -531,7 +535,7 @@ export default function Home() {
         nurture faith and foster personal growth.
       </ImageTextBlock>
 
-      {/* Adults Services */}
+      {/* Adults Services Section */}
       <ImageTextBlock
         inverted={true}
         showTag={true}
@@ -555,7 +559,7 @@ export default function Home() {
         social life with us.
       </ImageTextBlock>
 
-      {/* Educational Services */}
+      {/* Educational Services Section */}
       <ImageTextBlock
         inverted={false}
         showTag={true}
@@ -578,7 +582,7 @@ export default function Home() {
         journey with our educational services.
       </ImageTextBlock>
 
-      {/* Community Services */}
+      {/* Community Services Section */}
       <ImageTextBlock
         inverted={true}
         showTag={true}
@@ -601,7 +605,7 @@ export default function Home() {
         Participate today and elevate your impact; everyone has a role.
       </ImageTextBlock>
 
-      {/* Priests*/}
+      {/* Priests Section */}
       <ImageTextBlock
         inverted={false}
         showTag={true}
@@ -626,7 +630,7 @@ export default function Home() {
         together in Christ&apos;s love.
       </ImageTextBlock>
 
-      {/* Book & Schedule */}
+      {/* Book & Schedule Section */}
       <ImageTextBlock
         inverted={true}
         showTag={true}
@@ -650,7 +654,7 @@ export default function Home() {
         social life with us.
       </ImageTextBlock>
 
-      {/* Explore Our Spiritual Resources (no appear animation) */}
+      {/* Explore Our Spiritual Resources Section */}
       <Hero
         overlayColor="#171E34EB"
         image={Tree}
@@ -672,7 +676,7 @@ export default function Home() {
         buttonLink=""
       />
 
-      {/* Unite in Generosity */}
+      {/* Unite in Generosity Section */}
       <ImageTextBlock
         inverted={true}
         showTag={true}
@@ -695,7 +699,7 @@ export default function Home() {
         our programs, preserve traditions, and encourage new ones.
       </ImageTextBlock>
 
-      {/* KIDS PAINTINGS */}
+      {/* Kids Paintings / Volunteer Section */}
       <ImageTextBlock
         inverted={false}
         showTag={true}
@@ -719,7 +723,7 @@ export default function Home() {
         strengthen our bonds and uplift those in need.
       </ImageTextBlock>
 
-      {/* RENEW YOUR SPIRIT (no appear animation) */}
+      {/* Renew Your Spirit Section */}
       <Hero
         overlayColor="#E0AE546B"
         image={Abouna}
@@ -745,7 +749,7 @@ export default function Home() {
         textAlignment="left"
       />
 
-      {/* Captured Moments */}
+      {/* Captured Moments Gallery Section */}
       <div className="w-full bg-[#E8E9EB] flex flex-col items-center pb-25 px-6 md:px-12">
         <Hero
           backgroundColor="#E8E9EB"
@@ -799,7 +803,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Reach Out Form*/}
+      {/* Reach Out Contact Form Section */}
       <div className="w-full bg-[#0D111D] py-[100px] px-6 md:px-12 flex border border-[#646877] justify-center">
         {/* Outer Container for Text & Form */}
         <div className="w-full max-w-[1280px] flex flex-col lg:flex-row justify-between items-start gap-12">
