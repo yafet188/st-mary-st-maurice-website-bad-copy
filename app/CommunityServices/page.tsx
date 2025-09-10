@@ -5,13 +5,16 @@ import { Urbanist } from "next/font/google";
 import StMauriceChurchFromBackPicture from "../../public/Images/CommunityServices/StMauriceChurchFromBack.jpg";
 import StMauriceSunlightPicture from "../../public/Images/CommunityServices/StMauriceSunlight.jpg";
 
-// Initialize the Urbanist font
+// CommunityServices page: Displays church community services with cards and images
+
+// Initialize the Urbanist font for consistent typography
 const urbanist = Urbanist({
   subsets: ["latin"],
   display: "swap",
 });
 
 export default function CommunityServices() {
+  // List of community service offerings displayed as cards
   const products = [
     {
       id: 1,
@@ -101,7 +104,7 @@ export default function CommunityServices() {
 
   return (
     <>
-      {" "}
+      {/* Hero section with main image and page title */}
       <Hero
         image={StMauriceSunlightPicture}
         altText="St. Maurice chairs under illuminated by sunlight from the windows"
@@ -119,6 +122,7 @@ export default function CommunityServices() {
         height="464px"
         backgroundPosition="center 50%"
       ></Hero>
+      {/* Section with image and introductory text */}
       <ImageTextBlock
         inverted={false}
         title="Fostering Care and Connection"
@@ -129,6 +133,7 @@ export default function CommunityServices() {
         We share various community services designed to support and enrich the
         lives of our parishioners and the local community. 
       </ImageTextBlock>
+      {/* Main cards section for all community services */}
       <div className="w-full px-[100px] py-[100px] gap-[80px] flex flex-col items-center justify-center bg-[#171E34]">
         {/* Title */}
         <h1
@@ -137,7 +142,7 @@ export default function CommunityServices() {
           Community Services
         </h1>
 
-        {/* Cards Section */}
+        {/* Cards Section: Render each product as a ProductCard */}
         <div className="w-full max-w-[1312px] grid grid-cols-1 md:grid-cols-2 gap-[48px] justify-center">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
