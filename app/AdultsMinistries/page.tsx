@@ -5,13 +5,16 @@ import Hero from "../components/Hero";
 import FatherAthanasiusAtWeddingPicture from "../../public/Images/AdultsMinistries/FrAthanasiusAtWedding.jpg";
 import StMaryVespersPicture from "../../public/Images/AdultsMinistries/StMaryVespers.jpg";
 
-// Initialize the Urbanist font
+// AdultsMinistries page: Displays adult ministry services with cards and images
+
+// Initialize the Urbanist font for consistent typography
 const urbanist = Urbanist({
   subsets: ["latin"],
   display: "swap",
 });
 
 export default function AdultsMinistries() {
+  // List of adult ministry offerings displayed as cards
   const products = [
     {
       id: 1,
@@ -83,6 +86,7 @@ export default function AdultsMinistries() {
 
   return (
     <>
+      {/* Hero section with main image and page title */}
       <Hero
         image={StMaryVespersPicture}
         altText="Vespers in St Mary's church"
@@ -98,6 +102,7 @@ export default function AdultsMinistries() {
         contentAlignment="center"
       />
 
+      {/* Section with image and introductory text */}
       <ImageTextBlock
         roundedText=""
         textColor=""
@@ -112,6 +117,7 @@ export default function AdultsMinistries() {
         engaging them with us through tailored programs that foster community
         connections and personal development.
       </ImageTextBlock>
+      {/* Main cards section for all adult ministries */}
       <div className="w-full px-[100px] py-[100px] gap-[80px] flex flex-col items-center justify-center bg-[#171E34]">
         {/* Title */}
         <h1
@@ -120,7 +126,7 @@ export default function AdultsMinistries() {
           Adult Ministries
         </h1>
 
-        {/* Cards Section */}
+        {/* Cards Section: Render each product as a ProductCard */}
         <div className="w-full max-w-[1312px] grid grid-cols-1 md:grid-cols-2 gap-[48px] justify-center">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
