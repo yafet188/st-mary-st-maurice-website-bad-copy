@@ -1,13 +1,21 @@
 /* eslint-disable react/no-unescaped-entities */
+
+// Import reusable image/text block component
 import ImageTextBlock from "../components/ImageTextBlock";
+
+// Import images used in the volunteer page
 import OrdainingDeaconsPicture from "../../public/Images/Volunteer/OrdainingDeacons.jpg";
 import DeaconUnderSunPicture from "../../public/Images/Volunteer/DeaconUnderSun.jpg";
 import AltarDuringLiturgy from "../../public/Images/Volunteer/AltarDuringLiturgy.jpg";
 
+// Volunteer page component
 export default function Volunteer() {
   // NOTE btnHoverColor is NOT yet implemented
+
+  // Render three sections highlighting volunteering opportunities
   return (
     <div className="pt-[100px] bg-[#FEFAF1]">
+      {/* Section 1: General invitation to volunteer */}
       <ImageTextBlock
         inverted={false}
         title="Serve, Support, Succeed: Volunteer Today"
@@ -22,6 +30,8 @@ export default function Volunteer() {
         difference. You can engage in our missions through community outreach,
         educational programs, or maintaining our worship services.
       </ImageTextBlock>
+
+      {/* Section 2: Call to action with button to serve */}
       <ImageTextBlock
         inverted={true}
         title="Give Your Time, Transform Lives"
@@ -40,6 +50,8 @@ export default function Volunteer() {
         of care that extends throughout Kitchener, strengthening both the church
         and its wider community.
       </ImageTextBlock>
+
+      {/* Section 3: Final encouragement to get involved */}
       <ImageTextBlock
         inverted={false}
         title="Join Our Mission: Volunteer with Us"
