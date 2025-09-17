@@ -272,6 +272,7 @@ function Hero(props: HeroProps) {
             !image && backgroundColor ? backgroundColor : undefined,
         }}
       >
+        {/* Animated background image and overlay */}
         {image && (
           <motion.div
             className="absolute inset-0 z-0"
@@ -290,6 +291,7 @@ function Hero(props: HeroProps) {
                   backgroundPosition || `center ${imagePlacement}`,
               }}
             />
+            {/* Overlay for dimming or coloring the image */}
             <motion.div
               className="absolute inset-0 z-10"
               initial={{ opacity: 0 }}
@@ -304,6 +306,7 @@ function Hero(props: HeroProps) {
           </motion.div>
         )}
 
+        {/* Main content area: centers or aligns text and button */}
         <div
           className={`relative z-10 w-full max-w-[1512px] mx-auto h-full px-6 md:px-12 xl:px-[100px] flex items-center
     ${
@@ -327,6 +330,7 @@ function Hero(props: HeroProps) {
                 : "items-center"
             }`}
           >
+            {/* Subtitle (optional) */}
             {subtitle && (
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -339,6 +343,7 @@ function Hero(props: HeroProps) {
               </motion.h2>
             )}
 
+            {/* Title with typewriter effect */}
             {title && (
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
@@ -352,13 +357,16 @@ function Hero(props: HeroProps) {
                   width: "100%",
                 }}
               >
+                {/* Animated title text */}
                 {titleTypewriter.displayText}
+                {/* Blinking cursor during typing */}
                 {titleTypewriter.showCursor && (
                   <span className="animate-pulse">|</span>
                 )}
               </motion.h1>
             )}
 
+            {/* Description with typewriter effect */}
             {descriptionText && (
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -373,6 +381,7 @@ function Hero(props: HeroProps) {
                   width: "100%",
                 }}
               >
+                {/* Animated description text, supports line breaks */}
                 {descriptionTypewriter.displayText
                   .split("\n")
                   .map((line, idx, arr) => (
@@ -381,12 +390,14 @@ function Hero(props: HeroProps) {
                       {idx < arr.length - 1 && <br />}
                     </React.Fragment>
                   ))}
+                {/* Blinking cursor during typing */}
                 {descriptionTypewriter.showCursor && (
                   <span className="animate-pulse">|</span>
                 )}
               </motion.p>
             )}
 
+            {/* Optional call-to-action button */}
             {buttonText && (
               <div className="mt-4">
                 <RoundedButton
