@@ -1,11 +1,13 @@
 "use client";
 
+// Imports
 import { ReactNode } from "react";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import { Outfit, Urbanist, Zilla_Slab } from "next/font/google";
 import { motion } from "framer-motion";
 
+// Font setup
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -21,6 +23,7 @@ const urbanist = Urbanist({
   weight: ["400", "500", "600", "700"],
 });
 
+// Props interfaces for all components
 interface ImageTextBlockProps {
   children: ReactNode;
   showTag?: boolean;
@@ -64,7 +67,7 @@ interface RoundedTagProps {
   roundedTextColor?: string;
 }
 
-// Special component specifically to deal with image styling, reassess if necessary
+// RoundedImage: Animated, interactive image with 3D hover effect
 const RoundedImage = ({ image, altText }: RoundedImageProps) => {
   return (
     <motion.div
@@ -144,7 +147,7 @@ const RoundedImage = ({ image, altText }: RoundedImageProps) => {
   );
 };
 
-// Ditto For Buttons
+// RoundedButton: Glassmorphic animated button with hover/tap effects
 const RoundedButton = ({
   children,
   color,
@@ -266,6 +269,7 @@ const RoundedButton = ({
     </motion.button>
   );
 
+  // Render as <a> if link is provided, otherwise as <button>
   if (link != "") {
     return (
       <a href={link}>
@@ -277,6 +281,7 @@ const RoundedButton = ({
   }
 };
 
+// RoundedTag: Animated pill-shaped tag for highlighting text
 const RoundedTag = ({
   roundedText,
   roundedBgColor,
@@ -309,7 +314,8 @@ const RoundedTag = ({
     </motion.div>
   );
 };
-//Ditto For Rounded Tags
+
+// ImageTextBlock: Main component for image + text + button layout
 const ImageTextBlock = ({
   children,
   showTag,
@@ -334,10 +340,12 @@ const ImageTextBlock = ({
 }: ImageTextBlockProps) => {
   return (
     <div
+      // Container with background color
       style={{ backgroundColor: bgColor }}
       className="w-full min-h-[592.69px]"
     >
       <motion.div
+        // Animated wrapper for content
         initial={{ opacity: 0 }}
         whileInView={{
           opacity: 1,
@@ -346,8 +354,10 @@ const ImageTextBlock = ({
         transition={{ duration: 0.3, delay: 0.4 }}
         className="p-[100px] flex flex-row items-center gap-[80px] max-w-[1512px] w-full mx-auto"
       >
+        {/* Left image (if not inverted) */}
         {!inverted && <RoundedImage image={image} altText={altText} />}
         <div className="w-[616px] flex flex-col gap-[24px]">
+          {/* Optional tag */}
           {showTag && (
             <RoundedTag
               roundedText={roundedText}
@@ -356,6 +366,7 @@ const ImageTextBlock = ({
             />
           )}
 
+          {/* Title */}
           <motion.h2
             className={`${outfit.className} font-bold text-[36px] leading-[120%] tracking-[2%] uppercase`}
             style={{ color: titleColor }}
@@ -367,6 +378,7 @@ const ImageTextBlock = ({
             {title}
           </motion.h2>
 
+          {/* Mini title (optional) */}
           {miniTitle && (
             <motion.h6
               className="font-[outfit] font-bold text-[20px] leading-[120%] tracking-[2%]"
@@ -379,6 +391,7 @@ const ImageTextBlock = ({
             </motion.h6>
           )}
 
+          {/* Main text content */}
           <motion.div
             className={`${urbanist.className} font-normal text-[18px] leading-[150%] tracking-[2%] overflow-hidden`}
             style={{ color: textColor }}
@@ -397,6 +410,7 @@ const ImageTextBlock = ({
             </motion.div>
           </motion.div>
 
+          {/* Bottom mini title (optional) */}
           {bottomMiniTitle && (
             <motion.p
               className={`${outfit.className} font-bold text-[18px] leading-[150%] tracking-[2%]`}
@@ -409,6 +423,7 @@ const ImageTextBlock = ({
             </motion.p>
           )}
 
+          {/* Button (optional) */}
           {btnTxt && btnColor && (
             <RoundedButton
               link={btnLink}
@@ -422,6 +437,7 @@ const ImageTextBlock = ({
           )}
         </div>
 
+        {/* Right image (if inverted) */}
         {inverted && <RoundedImage image={image} altText={altText} />}
       </motion.div>
     </div>
