@@ -1,5 +1,6 @@
 "use client";
 
+// Imports
 import Link from "next/link";
 import Image from "next/image";
 import { Outfit } from "next/font/google";
@@ -7,14 +8,18 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Font setup
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
 function NavBar() {
+  // Get current route and router for navigation
   const pathname = usePathname();
   const router = useRouter();
+
+  // Determine if navbar text should be black based on route
   const useBlackText = [
     "/ContactUs",
     "/AboutUs",
@@ -28,6 +33,7 @@ function NavBar() {
     "/UpcomingEvents",
   ].includes(pathname);
 
+  // Navigation items for the main menu
   const navItems = [
     { text: "MINISTRIES", route: "/AdultsMinistries" },
     { text: "EVENTS", route: "/UpcomingEvents" },
@@ -37,6 +43,7 @@ function NavBar() {
     { text: "VOLUNTEER", route: "/Volunteer" },
   ];
 
+  // State for dropdowns and navbar shrink effect
   const [ministriesHovered, setMinistriesHovered] = useState(false);
   const [ministriesTimeout, setMinistriesTimeout] =
     useState<NodeJS.Timeout | null>(null);
@@ -47,6 +54,7 @@ function NavBar() {
   const [educationHovered, setEducationHovered] = useState(false);
   const [communityHovered, setCommunityHovered] = useState(false);
 
+  // Custom navigation handler with delay for animation
   const handleNavigation = (href: string, event: React.MouseEvent) => {
     event.preventDefault();
     setTimeout(() => {
@@ -54,12 +62,14 @@ function NavBar() {
     }, 500);
   };
 
+  // Shrink navbar on scroll
   useEffect(() => {
     const handleScroll = () => setShrink(window.scrollY > 30);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Framer Motion animation variants
   const containerVariants = {
     hidden: {},
     show: {
@@ -169,6 +179,7 @@ function NavBar() {
     },
   };
 
+  // Navbar background class based on shrink state
   const navBgClass = shrink
     ? "bg-dark/90 backdrop-blur-xl shadow-lg"
     : "bg-transparent";
@@ -183,6 +194,7 @@ function NavBar() {
         shrink ? "h-[80px] py-[12px]" : "h-[104.26px] py-[24px]"
       } flex items-center justify-between w-full fixed top-0 left-0 z-[9999] px-[80px] ${navBgClass}`}
     >
+      {/* Logo section */}
       <motion.div
         variants={itemVariants}
         className="mr-8"
@@ -212,6 +224,7 @@ function NavBar() {
         </Link>
       </motion.div>
 
+      {/* Main navigation menu */}
       <motion.ul
         variants={glassContainerVariants}
         initial="hidden"
@@ -228,6 +241,7 @@ function NavBar() {
           animate="show"
           className="flex items-center gap-6"
         >
+          {/* Render each nav item, handle dropdown for MINISTRIES */}
           {navItems.map((item) => {
             const isMinistries = item.text === "MINISTRIES";
             const liProps = isMinistries
@@ -255,6 +269,7 @@ function NavBar() {
                 className="relative inline-block rounded-xl transition-colors duration-300 hover:bg-[#695532]"
                 {...liProps}
               >
+                {/* Main nav link */}
                 <Link
                   href={item.route}
                   onClick={
@@ -271,6 +286,7 @@ function NavBar() {
                   } no-underline font-semibold text-sm leading-[21px] tracking-[0.02em] uppercase whitespace-nowrap px-3 py-2 rounded-xl transition-colors duration-200`}
                 >
                   {item.text}
+                  {/* Dropdown arrow and menu for MINISTRIES */}
                   {isMinistries && (
                     <>
                       <Image
@@ -284,17 +300,12 @@ function NavBar() {
                             : "/Images/Icons/ArrowDownWhite.png"
                         }
                         alt="dropdown arrow"
-                        width={
-                          useBlackText ? (ministriesHovered ? 16 : 16) : 16
-                        }
-                        height={
-                          useBlackText ? (ministriesHovered ? 16 : 16) : 16
-                        }
-                        className={`${
-                          ministriesHovered ? "ml-[4px]" : "ml-[4px]"
-                        } transition-transform duration-200`}
+                        width={16}
+                        height={16}
+                        className={`ml-[4px] transition-transform duration-200`}
                       />
 
+                      {/* Ministries dropdown menu */}
                       <AnimatePresence>
                         {ministriesHovered && (
                           <motion.ul
@@ -304,7 +315,7 @@ function NavBar() {
                             variants={dropdownVariants}
                             className="absolute left-0 top-full mt-2 w-64 bg-white rounded-xl shadow-lg z-40 origin-top"
                           >
-                            {/* Example: Youth submenu */}
+                            {/* Youth submenu */}
                             <motion.li
                               onMouseEnter={() => setYouthHovered(true)}
                               onMouseLeave={() => setYouthHovered(false)}
@@ -367,7 +378,7 @@ function NavBar() {
                                 )}
                               </AnimatePresence>
                             </motion.li>
-                            {/* Add Adults, Education, Community in same format... */}
+                            {/* Adults submenu */}
                             <motion.li
                               onMouseEnter={() => setAdultsHovered(true)}
                               onMouseLeave={() => setAdultsHovered(false)}
@@ -434,6 +445,7 @@ function NavBar() {
                                 )}
                               </AnimatePresence>
                             </motion.li>
+                            {/* Education submenu */}
                             <motion.li
                               onMouseEnter={() => setEducationHovered(true)}
                               onMouseLeave={() => setEducationHovered(false)}
@@ -510,6 +522,7 @@ function NavBar() {
                                 )}
                               </AnimatePresence>
                             </motion.li>
+                            {/* Community submenu */}
                             <motion.li
                               onMouseEnter={() => setCommunityHovered(true)}
                               onMouseLeave={() => setCommunityHovered(false)}
@@ -590,6 +603,7 @@ function NavBar() {
         </motion.div>
       </motion.ul>
 
+      {/* Call-to-action button */}
       <motion.button
         variants={itemVariants}
         whileHover={{
