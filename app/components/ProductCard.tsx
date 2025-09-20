@@ -1,10 +1,12 @@
 "use client";
 
+// Imports
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Urbanist, Outfit, Raleway } from "next/font/google";
 
+// Font setup
 const urbanist = Urbanist({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -18,6 +20,7 @@ const raleway = Raleway({
   weight: ["400", "500", "600", "700"],
 });
 
+// Product and props interfaces
 interface Product {
   id: number;
   image: string;
@@ -31,9 +34,11 @@ interface ProductCardProps {
   product: Product;
 }
 
+// ProductCard: Card component for displaying a product with image, title, description, and button
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <motion.div
+      // Card container with entry and hover animation
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -44,6 +49,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Image Container with Hover Effect */}
       <motion.div className="relative overflow-hidden rounded-[24px] mb-[32px]">
         <motion.div
+          // Slight zoom on image hover
           initial={{ scale: 1 }}
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.5 }}
@@ -56,6 +62,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             className="rounded-[24px] object-cover"
           />
         </motion.div>
+        {/* Overlay gradient on hover */}
         <motion.div
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
@@ -103,6 +110,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Animated Button */}
       <motion.div className="mt-6">
         <motion.button
+          // Button hover/tap animation
           whileHover={{ scale: 1.05, backgroundColor: "#E0AE54" }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.2 }}
