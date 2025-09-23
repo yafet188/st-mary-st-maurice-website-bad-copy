@@ -1,8 +1,10 @@
 "use client";
+// Imports
 import React from "react";
 import { motion } from "framer-motion";
 import { Urbanist, Outfit, Raleway } from "next/font/google";
 
+// Font setup
 const urbanist = Urbanist({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -16,8 +18,10 @@ const raleway = Raleway({
   weight: ["400", "500", "600", "700"],
 });
 
+// ConnectWithFathersForm: Contact form section with animated fields and button
 export default function ConnectWithFathersForm() {
   return (
+    // Outer background and border container
     <div className="w-full bg-[#B7B9C0] py-[100px] px-6 md:px-12 flex border border-[#646877] justify-center">
       {/* Outer Container for Text & Form */}
       <div className="w-full max-w-[1280px] flex flex-col lg:flex-row justify-between items-start gap-12">
@@ -95,6 +99,7 @@ export default function ConnectWithFathersForm() {
           <form className="w-full flex flex-col gap-[48px]">
             {/* Input Fields */}
             <motion.div
+              // Name field
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -129,6 +134,7 @@ export default function ConnectWithFathersForm() {
             </motion.div>
 
             <motion.div
+              // Email field
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -163,6 +169,7 @@ export default function ConnectWithFathersForm() {
             </motion.div>
 
             <motion.div
+              // Subject field
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -198,6 +205,7 @@ export default function ConnectWithFathersForm() {
 
             {/* Message Section */}
             <motion.div
+              // Message textarea
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -245,6 +253,7 @@ export default function ConnectWithFathersForm() {
               style={{ pointerEvents: "auto" }}
             >
               <motion.button
+                // Animated submit button with shine effect
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
