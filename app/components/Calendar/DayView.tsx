@@ -4,15 +4,18 @@ import React from "react";
 import { Outfit, Raleway } from "next/font/google";
 import { motion } from "framer-motion";
 
+// Define the shape of an event object
 interface Event {
   time: string;
   name: string;
   description: string;
 }
 
+// Load Google fonts with specific weights
 const outfit = Outfit({ subsets: ["latin"], weight: ["600"] });
 const raleway = Raleway({ subsets: ["latin"], weight: ["400", "500"] });
 
+// Example events to display in the day view
 const mockEvents: Event[] = [
   {
     time: "10:30AM–12PM",
@@ -31,14 +34,16 @@ const mockEvents: Event[] = [
   },
 ];
 
+// Card component for displaying a single event with animation
 const EventCard = ({ event, index }: { event: Event; index: number }) => {
   return (
     <motion.div
+      // Initial animation state for the card
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{
         duration: 0.6,
-        delay: 0.5 + index * 0.15,
+        delay: 0.5 + index * 0.15, // Staggered animation for each card
         type: "spring",
         stiffness: 100,
         damping: 12,
@@ -60,7 +65,9 @@ const EventCard = ({ event, index }: { event: Event; index: number }) => {
           "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -1px 1px rgba(0,0,0,0.2)",
       }}
     >
+      {/* Event details */}
       <div className="flex flex-col relative z-10">
+        {/* Event time with animation */}
         <motion.p
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -72,6 +79,7 @@ const EventCard = ({ event, index }: { event: Event; index: number }) => {
         >
           {event.time}
         </motion.p>
+        {/* Event name with animation */}
         <motion.h3
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -83,6 +91,7 @@ const EventCard = ({ event, index }: { event: Event; index: number }) => {
         >
           {event.name}
         </motion.h3>
+        {/* Event description with animation */}
         <motion.p
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -96,7 +105,7 @@ const EventCard = ({ event, index }: { event: Event; index: number }) => {
         </motion.p>
       </div>
 
-      {/* Glass shine effect */}
+      {/* Glass shine effect overlay */}
       <motion.div
         initial={{ x: "-100%", opacity: 0 }}
         animate={{ x: "100%", opacity: [0, 0.3, 0] }}
@@ -111,9 +120,11 @@ const EventCard = ({ event, index }: { event: Event; index: number }) => {
   );
 };
 
+// Main component to display all events for the day
 const DayView = () => {
   return (
     <motion.div
+      // Animation for the container
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -30 }}
@@ -126,6 +137,7 @@ const DayView = () => {
       }}
       className="flex flex-col gap-6 pt-8 pb-16"
     >
+      {/* Render each event card */}
       {mockEvents.map((event, index) => (
         <EventCard key={index} event={event} index={index} />
       ))}
