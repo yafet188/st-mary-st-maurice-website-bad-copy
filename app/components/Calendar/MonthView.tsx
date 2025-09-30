@@ -4,9 +4,11 @@ import React from "react";
 import { Outfit, Raleway } from "next/font/google";
 import { motion } from "framer-motion";
 
+// Load Google fonts with specific weights
 const outfit = Outfit({ subsets: ["latin"], weight: ["700"] });
 const raleway = Raleway({ subsets: ["latin"], weight: ["400", "600"] });
 
+// Days of the week labels
 const daysOfWeek = [
   "Monday",
   "Tuesday",
@@ -17,6 +19,7 @@ const daysOfWeek = [
   "Sunday",
 ];
 
+// Event and CalendarDay interfaces for type safety
 interface Event {
   time: string;
   name: string;
@@ -27,6 +30,7 @@ interface CalendarDay {
   events: Event[];
 }
 
+// Mock data for a month (5 weeks, each with days and events)
 const mockMonth: CalendarDay[][] = [
   // Week 1
   [
@@ -82,8 +86,10 @@ const mockMonth: CalendarDay[][] = [
   ],
 ];
 
+// MonthView component renders the animated calendar month view
 const MonthView = () => {
   return (
+    // Main container with entrance/exit animation
     <motion.div
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
@@ -133,6 +139,7 @@ const MonthView = () => {
         transition={{ duration: 0.8, delay: 0.4 }}
         className="grid grid-cols-7 gap-2"
       >
+        {/* Flatten the weeks into a single array for rendering */}
         {mockMonth.flat().map((calendarDay, index) => (
           <motion.div
             key={index}
@@ -170,7 +177,7 @@ const MonthView = () => {
               {calendarDay.day}
             </div>
 
-            {/* Events */}
+            {/* Events for the day */}
             <div className="flex flex-col gap-2 relative z-10">
               {calendarDay.events.map((event, eIndex) => (
                 <motion.div
@@ -189,6 +196,7 @@ const MonthView = () => {
                     WebkitBackdropFilter: "blur(5px)",
                   }}
                 >
+                  {/* Event time and name */}
                   {event.time} {event.name}
                 </motion.div>
               ))}
