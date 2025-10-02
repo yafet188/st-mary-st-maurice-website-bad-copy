@@ -1,12 +1,15 @@
 "use client";
 
+// Import dependencies
 import React from "react";
 import { Outfit, Raleway } from "next/font/google";
 import { motion } from "framer-motion";
 
+// Load Google fonts with specified weights
 const outfit = Outfit({ subsets: ["latin"], weight: ["600"] });
 const raleway = Raleway({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
+// Event and week data interfaces
 interface Event {
   time: string;
   name: string;
@@ -19,6 +22,7 @@ interface WeekData {
   events: Event[];
 }
 
+// Mock data for a week's calendar events
 const mockWeekData: WeekData[] = [
   {
     date: "Sun 17.09",
@@ -119,9 +123,11 @@ const mockWeekData: WeekData[] = [
   },
 ];
 
+// Component for rendering a single day's column in the week view
 const DayColumn = ({ day, index }: { day: WeekData; index: number }) => {
   return (
     <motion.div
+      // Animate the column entrance
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{
@@ -135,6 +141,7 @@ const DayColumn = ({ day, index }: { day: WeekData; index: number }) => {
     >
       {/* Day Header */}
       <motion.div
+        // Animate the header entrance
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
@@ -150,6 +157,7 @@ const DayColumn = ({ day, index }: { day: WeekData; index: number }) => {
             "0 4px 16px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.1)",
         }}
       >
+        {/* Display the date */}
         <h4
           className={`${raleway.className} font-semibold text-[18px] leading-[120%] relative z-10 drop-shadow-sm`}
         >
@@ -159,9 +167,11 @@ const DayColumn = ({ day, index }: { day: WeekData; index: number }) => {
 
       {/* Events Column */}
       <div className="flex flex-col gap-4">
+        {/* Render each event for the day */}
         {day.events.map((event, idx) => (
           <motion.div
             key={idx}
+            // Animate event card entrance and hover
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{
@@ -184,6 +194,7 @@ const DayColumn = ({ day, index }: { day: WeekData; index: number }) => {
                 "0 6px 24px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.1), inset 0 -1px 1px rgba(0,0,0,0.2)",
             }}
           >
+            {/* Event time */}
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -195,6 +206,7 @@ const DayColumn = ({ day, index }: { day: WeekData; index: number }) => {
             >
               {event.time}
             </motion.p>
+            {/* Event name */}
             <motion.h3
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -206,6 +218,7 @@ const DayColumn = ({ day, index }: { day: WeekData; index: number }) => {
             >
               {event.name}
             </motion.h3>
+            {/* Event description */}
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -224,9 +237,11 @@ const DayColumn = ({ day, index }: { day: WeekData; index: number }) => {
   );
 };
 
+// Main WeekView component to render the week grid
 const WeekView = () => {
   return (
     <motion.div
+      // Animate the overall week view entrance/exit
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -30 }}
@@ -240,11 +255,13 @@ const WeekView = () => {
       className="pt-8 w-full"
     >
       <motion.div
+        // Animate the grid appearance
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.3 }}
         className="grid grid-cols-7 gap-6 w-full"
       >
+        {/* Render each day column */}
         {mockWeekData.map((day, index) => (
           <DayColumn key={index} day={day} index={index} />
         ))}
