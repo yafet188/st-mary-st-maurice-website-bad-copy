@@ -44,11 +44,15 @@ function NavBar() {
   ];
 
   // State for dropdowns and navbar shrink effect
+  // Track if the "MINISTRIES" dropdown is hovered
   const [ministriesHovered, setMinistriesHovered] = useState(false);
+  // Timeout for delayed closing of dropdown
   const [ministriesTimeout, setMinistriesTimeout] =
     useState<NodeJS.Timeout | null>(null);
 
+  // Track if navbar should shrink on scroll
   const [shrink, setShrink] = useState(false);
+  // Track hover state for each submenu
   const [youthHovered, setYouthHovered] = useState(false);
   const [adultsHovered, setAdultsHovered] = useState(false);
   const [educationHovered, setEducationHovered] = useState(false);
@@ -69,7 +73,7 @@ function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Framer Motion animation variants
+  // Framer Motion animation variants for different UI elements
   const containerVariants = {
     hidden: {},
     show: {
@@ -194,7 +198,7 @@ function NavBar() {
         shrink ? "h-[80px] py-[12px]" : "h-[104.26px] py-[24px]"
       } flex items-center justify-between w-full fixed top-0 left-0 z-[9999] px-[80px] ${navBgClass}`}
     >
-      {/* Logo section */}
+      {/* Logo section (left) */}
       <motion.div
         variants={itemVariants}
         className="mr-8"
@@ -214,6 +218,7 @@ function NavBar() {
           },
         }}
       >
+        {/* Clicking logo navigates to Home */}
         <Link href="/Home" onClick={(e) => handleNavigation("/Home", e)}>
           <Image
             src="/Images/Logos/NavBarLogo.png"
@@ -224,7 +229,7 @@ function NavBar() {
         </Link>
       </motion.div>
 
-      {/* Main navigation menu */}
+      {/* Main navigation menu (center) */}
       <motion.ul
         variants={glassContainerVariants}
         initial="hidden"
@@ -244,6 +249,7 @@ function NavBar() {
           {/* Render each nav item, handle dropdown for MINISTRIES */}
           {navItems.map((item) => {
             const isMinistries = item.text === "MINISTRIES";
+            // Attach hover handlers for dropdown if MINISTRIES
             const liProps = isMinistries
               ? {
                   onMouseEnter: () => {
@@ -289,6 +295,7 @@ function NavBar() {
                   {/* Dropdown arrow and menu for MINISTRIES */}
                   {isMinistries && (
                     <>
+                      {/* Arrow icon changes depending on hover and theme */}
                       <Image
                         src={
                           useBlackText
@@ -321,6 +328,7 @@ function NavBar() {
                               onMouseLeave={() => setYouthHovered(false)}
                               className="relative"
                             >
+                              {/* Youth & Kids Services link */}
                               <Link
                                 href="/YouthKidsServices"
                                 onClick={(e) =>
@@ -336,6 +344,7 @@ function NavBar() {
                                   height={6}
                                 />
                               </Link>
+                              {/* Youth submenu dropdown */}
                               <AnimatePresence>
                                 {youthHovered && (
                                   <motion.ul
@@ -345,23 +354,31 @@ function NavBar() {
                                     variants={submenuVariants}
                                     className="absolute left-full top-0 ml-2 w-64 bg-white rounded-xl shadow-lg z-50 origin-left"
                                   >
-                                    {[
-                                      "Sunday School",
-                                      "High School",
-                                      "Children's Choir",
-                                    ].map((label) => (
+                                    {/* Youth submenu items */}
+                                    {
+                                      {
+                                        "Sunday School": "Sunday School",
+                                        "High School": "High School",
+                                        "Children's Choir": "Children's Choir",
+                                      } as const
+                                    }
+                                    {Object.entries({
+                                      "Sunday School": "Sunday School",
+                                      "High School": "High School",
+                                      "Children's Choir": "Children's Choir",
+                                    } as const).map(([key, label]) => (
                                       <motion.li
                                         variants={menuItemVariants}
-                                        key={label}
+                                        key={key}
                                       >
                                         <Link
-                                          href={`/YouthKidsServices#${label
+                                          href={`/YouthKidsServices#${key
                                             .toLowerCase()
                                             .replace(/ /g, "-")
                                             .replace(/'/g, "")}`}
                                           onClick={(e) =>
                                             handleNavigation(
-                                              `/YouthKidsServices#${label
+                                              `/YouthKidsServices#${key
                                                 .toLowerCase()
                                                 .replace(/ /g, "-")
                                                 .replace(/'/g, "")}`,
@@ -384,6 +401,7 @@ function NavBar() {
                               onMouseLeave={() => setAdultsHovered(false)}
                               className="relative"
                             >
+                              {/* Adults Services link */}
                               <Link
                                 href="/AdultsMinistries"
                                 onClick={(e) =>
@@ -399,6 +417,7 @@ function NavBar() {
                                   height={6}
                                 />
                               </Link>
+                              {/* Adults submenu dropdown */}
                               <AnimatePresence>
                                 {adultsHovered && (
                                   <motion.ul
@@ -408,27 +427,45 @@ function NavBar() {
                                     variants={submenuVariants}
                                     className="absolute left-full top-0 ml-2 w-64 bg-white rounded-xl shadow-lg z-50 origin-left"
                                   >
-                                    {[
-                                      "Young Adult Ministries",
-                                      "Pope Kyrillos Family Meeting",
-                                      "Marriage Preparation",
-                                      "Family Services",
-                                      "Senior Services",
-                                      "Adults Choir",
-                                      "Usher Service",
-                                    ].map((label) => (
+                                    {/* Adults submenu items */}
+                                    {
+                                      {
+                                        "Young Adult Ministries":
+                                          "Young Adult Ministries",
+                                        "Pope Kyrillos Family Meeting":
+                                          "Pope Kyrillos Family Meeting",
+                                        "Marriage Preparation":
+                                          "Marriage Preparation",
+                                        "Family Services": "Family Services",
+                                        "Senior Services": "Senior Services",
+                                        "Adults Choir": "Adults Choir",
+                                        "Usher Service": "Usher Service",
+                                      } as const
+                                    }
+                                    {Object.entries({
+                                      "Young Adult Ministries":
+                                        "Young Adult Ministries",
+                                      "Pope Kyrillos Family Meeting":
+                                        "Pope Kyrillos Family Meeting",
+                                      "Marriage Preparation":
+                                        "Marriage Preparation",
+                                      "Family Services": "Family Services",
+                                      "Senior Services": "Senior Services",
+                                      "Adults Choir": "Adults Choir",
+                                      "Usher Service": "Usher Service",
+                                    } as const).map(([key, label]) => (
                                       <motion.li
                                         variants={menuItemVariants}
-                                        key={label}
+                                        key={key}
                                       >
                                         <Link
-                                          href={`/AdultsMinistries#${label
+                                          href={`/AdultsMinistries#${key
                                             .toLowerCase()
                                             .replace(/ /g, "-")
                                             .replace(/'/g, "")}`}
                                           onClick={(e) =>
                                             handleNavigation(
-                                              `/AdultsMinistries#${label
+                                              `/AdultsMinistries#${key
                                                 .toLowerCase()
                                                 .replace(/ /g, "-")
                                                 .replace(/'/g, "")}`,
@@ -451,6 +488,7 @@ function NavBar() {
                               onMouseLeave={() => setEducationHovered(false)}
                               className="relative"
                             >
+                              {/* Educational Services link */}
                               <Link
                                 href="/EducationalServices"
                                 onClick={(e) =>
@@ -466,6 +504,7 @@ function NavBar() {
                                   height={6}
                                 />
                               </Link>
+                              {/* Education submenu dropdown */}
                               <AnimatePresence>
                                 {educationHovered && (
                                   <motion.ul
@@ -475,32 +514,43 @@ function NavBar() {
                                     variants={submenuVariants}
                                     className="absolute left-full top-0 ml-2 w-64 bg-white rounded-xl shadow-lg z-50 origin-left"
                                   >
-                                    {[
+                                    {/* Education submenu items */}
+                                    {
                                       {
-                                        label: "Let There Be Light",
-                                        subtitle: "(Foundations + Apologetics)",
-                                      },
-                                      {
-                                        label: "St. Moses the Strong",
-                                        subtitle:
-                                          " (Continuing Servant Education)",
-                                      },
-                                      { label: "Catechesis Program" },
-                                      { label: "Servants Preparation" },
-                                      { label: "Bible Studies" },
-                                    ].map(({ label, subtitle }) => (
+                                        "Let There Be Light":
+                                          "Let There Be Light (Foundations + Apologetics)",
+                                        "St. Moses the Strong":
+                                          "St. Moses the Strong (Continuing Servant Education)",
+                                        "Catechesis Program":
+                                          "Catechesis Program",
+                                        "Servants Preparation":
+                                          "Servants Preparation",
+                                        "Bible Studies": "Bible Studies",
+                                      } as const
+                                    }
+                                    {Object.entries({
+                                      "Let There Be Light":
+                                        "Let There Be Light (Foundations + Apologetics)",
+                                      "St. Moses the Strong":
+                                        "St. Moses the Strong (Continuing Servant Education)",
+                                      "Catechesis Program":
+                                        "Catechesis Program",
+                                      "Servants Preparation":
+                                        "Servants Preparation",
+                                      "Bible Studies": "Bible Studies",
+                                    } as const).map(([key, label]) => (
                                       <motion.li
                                         variants={menuItemVariants}
-                                        key={label}
+                                        key={key}
                                       >
                                         <Link
-                                          href={`/Education#${label
+                                          href={`/Education#${key
                                             .toLowerCase()
                                             .replace(/ /g, "-")
                                             .replace(/'/g, "")}`}
                                           onClick={(e) =>
                                             handleNavigation(
-                                              `/Education#${label
+                                              `/Education#${key
                                                 .toLowerCase()
                                                 .replace(/ /g, "-")
                                                 .replace(/'/g, "")}`,
@@ -510,9 +560,15 @@ function NavBar() {
                                           className="block px-4 py-3 text-black hover:bg-[#FEFAF1] hover:shadow-lg hover:rounded-xl transition-colors duration-200 text-sm font-medium"
                                         >
                                           {label}
-                                          {subtitle && (
+                                          {/* Subtitle for some education items */}
+                                          {key === "Let There Be Light" && (
                                             <div className="text-xs text-gray-500 leading-tight">
-                                              {subtitle}
+                                              Foundations + Apologetics
+                                            </div>
+                                          )}
+                                          {key === "St. Moses the Strong" && (
+                                            <div className="text-xs text-gray-500 leading-tight">
+                                              Continuing Servant Education
                                             </div>
                                           )}
                                         </Link>
@@ -528,6 +584,7 @@ function NavBar() {
                               onMouseLeave={() => setCommunityHovered(false)}
                               className="relative"
                             >
+                              {/* Community Services link */}
                               <Link
                                 href="/CommunityServices"
                                 onClick={(e) =>
@@ -543,6 +600,7 @@ function NavBar() {
                                   height={6}
                                 />
                               </Link>
+                              {/* Community submenu dropdown */}
                               <AnimatePresence>
                                 {communityHovered && (
                                   <motion.ul
@@ -552,29 +610,50 @@ function NavBar() {
                                     variants={submenuVariants}
                                     className="absolute left-full top-0 ml-2 w-64 bg-white rounded-xl shadow-lg z-50 origin-left"
                                   >
-                                    {[
-                                      "Family Retreat Services",
-                                      "Maintenance Group",
-                                      "Newcomer Services",
-                                      "Homeless Ministry",
-                                      "Kitchen Service",
-                                      "St. Joseph Bookstore",
-                                      "Gym Service",
-                                      "Ray of Hope",
-                                      "Ride Service",
-                                    ].map((label) => (
+                                    {/* Community submenu items */}
+                                    {
+                                      {
+                                        "Family Retreat Services":
+                                          "Family Retreat Services",
+                                        "Maintenance Group":
+                                          "Maintenance Group",
+                                        "Newcomer Services":
+                                          "Newcomer Services",
+                                        "Homeless Ministry":
+                                          "Homeless Ministry",
+                                        "Kitchen Service": "Kitchen Service",
+                                        "St. Joseph Bookstore":
+                                          "St. Joseph Bookstore",
+                                        "Gym Service": "Gym Service",
+                                        "Ray of Hope": "Ray of Hope",
+                                        "Ride Service": "Ride Service",
+                                      } as const
+                                    }
+                                    {Object.entries({
+                                      "Family Retreat Services":
+                                        "Family Retreat Services",
+                                      "Maintenance Group": "Maintenance Group",
+                                      "Newcomer Services": "Newcomer Services",
+                                      "Homeless Ministry": "Homeless Ministry",
+                                      "Kitchen Service": "Kitchen Service",
+                                      "St. Joseph Bookstore":
+                                        "St. Joseph Bookstore",
+                                      "Gym Service": "Gym Service",
+                                      "Ray of Hope": "Ray of Hope",
+                                      "Ride Service": "Ride Service",
+                                    } as const).map(([key, label]) => (
                                       <motion.li
                                         variants={menuItemVariants}
-                                        key={label}
+                                        key={key}
                                       >
                                         <Link
-                                          href={`/CommunityServices#${label
+                                          href={`/CommunityServices#${key
                                             .toLowerCase()
                                             .replace(/ /g, "-")
                                             .replace(/'/g, "")}`}
                                           onClick={(e) =>
                                             handleNavigation(
-                                              `/CommunityServices#${label
+                                              `/CommunityServices#${key
                                                 .toLowerCase()
                                                 .replace(/ /g, "-")
                                                 .replace(/'/g, "")}`,
@@ -603,7 +682,7 @@ function NavBar() {
         </motion.div>
       </motion.ul>
 
-      {/* Call-to-action button */}
+      {/* Call-to-action button (right) */}
       <motion.button
         variants={itemVariants}
         whileHover={{
