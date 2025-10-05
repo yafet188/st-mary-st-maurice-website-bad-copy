@@ -6,14 +6,20 @@ import Image from "next/image";
 import { Outfit, Urbanist } from "next/font/google";
 import { motion } from "framer-motion";
 
-// Font setup
+// Font setup for section headings and body text
 const outfit = Outfit({ subsets: ["latin"], weight: ["700", "400"] });
 const urbanist = Urbanist({ subsets: ["latin"], weight: ["400"] });
 
-// SacredSpacesSection: Section displaying two sacred spaces as cards
+/**
+ * SacredSpacesSection
+ * Renders a section highlighting two sacred spaces as animated cards.
+ * Each card displays an image, name, address, and phone number.
+ * The section includes a header and a call-to-action button.
+ */
 export default function SacredSpacesSection() {
   return (
-    // Main section with fade/scale animation on enter
+    // Main section with background color and vertical padding.
+    // Uses framer-motion for fade-in and scale animation on scroll into view.
     <motion.section
       className="w-full bg-[#171E34] py-20 px-4 gap-20 md:px-12 flex flex-col items-center"
       initial={{ opacity: 0, scale: 0.95 }}
@@ -21,7 +27,7 @@ export default function SacredSpacesSection() {
       transition={{ duration: 0.8, ease: "anticipate" }}
       viewport={{ once: true, amount: 0.3 }}
     >
-      {/* Container for section content */}
+      {/* Container for all section content, centers and constrains width */}
       <motion.div
         className="max-w-[1440px] w-full mx-auto flex flex-col gap-8"
         initial={{ opacity: 0, y: 80 }}
@@ -29,7 +35,7 @@ export default function SacredSpacesSection() {
         transition={{ duration: 0.9, delay: 0.1, ease: "backOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >
-        {/* Header row: title and button */}
+        {/* Header row: contains section title and call-to-action button */}
         <motion.div
           className="flex flex-row justify-between px-16 items-center w-full mb-8"
           initial={{ opacity: 0, y: -40 }}
@@ -37,12 +43,13 @@ export default function SacredSpacesSection() {
           transition={{ duration: 0.7, delay: 0.2, ease: "backOut" }}
           viewport={{ once: true, amount: 0.5 }}
         >
+          {/* Section Title */}
           <h2
             className={`${outfit.className} text-white text-2xl md:text-3xl font-bold tracking-wide`}
           >
             OUR SACRED SPACES
           </h2>
-          {/* Call-to-action button */}
+          {/* Call-to-action button for discovering events */}
           <button
             className="
               border-[1.5px] border-[#E0AE54]
@@ -62,7 +69,7 @@ export default function SacredSpacesSection() {
             DISCOVER UPCOMING EVENTS
           </button>
         </motion.div>
-        {/* Cards row */}
+        {/* Cards row: displays two sacred space cards side by side on desktop, stacked on mobile */}
         <div className="w-full flex flex-col md:flex-row gap-20 justify-center items-stretch">
           {/* Card 1: St. Mary and St. Maurice's Church */}
           <motion.div
@@ -77,7 +84,7 @@ export default function SacredSpacesSection() {
             }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            {/* Image for church land */}
+            {/* Image for church land, fills card top */}
             <div className="relative w-full aspect-[16/9] bg-[#232B44] h-[845px] flex items-center justify-center">
               {/* Church Land Photo */}
               <Image
@@ -90,14 +97,15 @@ export default function SacredSpacesSection() {
                 unoptimized
               />
             </div>
-            {/* Card content */}
+            {/* Card content: name, address, and phone */}
             <div className="p-6 flex flex-col gap-2">
+              {/* Church Name */}
               <h6
                 className={`${outfit.className} text-white text-[20px] font-bold leading-[120%] tracking-[0.02em] mb-2`}
               >
                 ST. MARY AND ST. MAURICE&apos;S CHURCH
               </h6>
-              {/* Address */}
+              {/* Address row with location icon */}
               <div className="flex items-center gap-2 text-[#E8E9EB] text-[16px] mb-1">
                 <Image
                   src="/Images/Icons/Location.png"
@@ -109,7 +117,7 @@ export default function SacredSpacesSection() {
                   388 Ottawa St S, Kitchener, Ontario, Canada N2M 3P4
                 </span>
               </div>
-              {/* Phone */}
+              {/* Phone row with phone icon */}
               <div className="flex items-center gap-2 text-[#E8E9EB] text-[16px]">
                 <Image
                   src="/Images/Icons/Phone.png"
@@ -136,7 +144,7 @@ export default function SacredSpacesSection() {
             }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            {/* Image for retreat center */}
+            {/* Image for retreat center, fills card top */}
             <div className="relative w-full aspect-[16/9] bg-[#232B44] flex h-[845px] items-center justify-center">
               {/* Cambridge Land Photo */}
               <Image
@@ -149,14 +157,15 @@ export default function SacredSpacesSection() {
                 unoptimized
               />
             </div>
-            {/* Card content */}
+            {/* Card content: name, address, and phone */}
             <div className="p-6 flex flex-col gap-2">
+              {/* Retreat Center Name */}
               <h6
                 className={`${outfit.className} text-white text-[20px] font-bold leading-[120%] tracking-[0.02em] mb-2`}
               >
                 ST. MARY&apos;S RETREAT CENTER AND ST. CYRIL VI&apos;S CHAPEL
               </h6>
-              {/* Address */}
+              {/* Address row with location icon */}
               <div className="flex items-center gap-2 text-[#E8E9EB] text-[16px] mb-1">
                 <Image
                   src="/Images/Icons/Location.png"
@@ -168,7 +177,7 @@ export default function SacredSpacesSection() {
                   1708 Cheese Factory Rd, Branchton, ON N0B 1L0
                 </span>
               </div>
-              {/* Phone */}
+              {/* Phone row with phone icon */}
               <div className="flex items-center gap-2 text-[#E8E9EB] text-[16px]">
                 <Image
                   src="/Images/Icons/Phone.png"
