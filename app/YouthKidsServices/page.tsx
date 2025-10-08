@@ -11,7 +11,9 @@ const urbanist = Urbanist({
   display: "swap",
 });
 
+// Main page component for Youth & Kids Services
 export default function YouthKidsServices() {
+  // List of youth and kids ministry programs
   const products = [
     {
       id: 1,
@@ -103,6 +105,7 @@ export default function YouthKidsServices() {
 
   return (
     <>
+      {/* Hero section with background image and title */}
       <Hero
         image={KidsByStMaryAltarPicture}
         altText="Vespers in St Mary's church"
@@ -124,6 +127,7 @@ export default function YouthKidsServices() {
         backgroundPosition="center 30%"
       ></Hero>
 
+      {/* Section describing the mission and environment */}
       <ImageTextBlock
         inverted={false}
         title="Empowering Young Lives"
@@ -138,6 +142,8 @@ export default function YouthKidsServices() {
         Christian faith, creativity, and community values, supporting them in
         every stage of their lives.
       </ImageTextBlock>
+
+      {/* Ministries section with title and cards */}
       <div className="w-full px-[100px] py-[100px] gap-[80px] flex flex-col items-center justify-center bg-[#171E34]">
         {/* Title */}
         <h1
@@ -146,7 +152,7 @@ export default function YouthKidsServices() {
           Youth & Kids Ministries
         </h1>
 
-        {/* Cards Section */}
+        {/* Cards Section: displays each ministry as a ProductCard */}
         <div className="w-full max-w-[1312px] grid grid-cols-1 md:grid-cols-2 gap-[48px] justify-center">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
