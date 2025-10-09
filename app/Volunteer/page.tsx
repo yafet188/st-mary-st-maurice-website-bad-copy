@@ -16,6 +16,7 @@ export default function Volunteer() {
   return (
     <div className="pt-[100px] bg-[#FEFAF1]">
       {/* Section 1: General invitation to volunteer */}
+      {/* This block introduces volunteering and its impact at the church */}
       <ImageTextBlock
         inverted={false}
         title="Serve, Support, Succeed: Volunteer Today"
@@ -26,12 +27,14 @@ export default function Volunteer() {
         roundedBgColor=""
         roundedTextColor=""
       >
+        {/* Description of volunteering opportunities */}
         At St. Mary and St. Maurice's, volunteering is about making a meaningful
         difference. You can engage in our missions through community outreach,
         educational programs, or maintaining our worship services.
       </ImageTextBlock>
 
       {/* Section 2: Call to action with button to serve */}
+      {/* This block encourages users to join as volunteers and highlights benefits */}
       <ImageTextBlock
         inverted={true}
         title="Give Your Time, Transform Lives"
@@ -45,6 +48,7 @@ export default function Volunteer() {
         roundedBgColor=""
         roundedTextColor=""
       >
+        {/* Description of volunteer roles and community impact */}
         Each volunteer role supports our church's activities and offers personal
         growth. Join our dedicated team of volunteers to contribute to a network
         of care that extends throughout Kitchener, strengthening both the church
@@ -52,6 +56,7 @@ export default function Volunteer() {
       </ImageTextBlock>
 
       {/* Section 3: Final encouragement to get involved */}
+      {/* This block provides a final motivational message and call to action */}
       <ImageTextBlock
         inverted={false}
         title="Join Our Mission: Volunteer with Us"
@@ -66,6 +71,7 @@ export default function Volunteer() {
         roundedBgColor=""
         roundedTextColor=""
       >
+        {/* Description of the importance of volunteers */}
         Your efforts embody our mission to spread love and foster spiritual
         growth, creating lasting impacts and deeper community connections.
       </ImageTextBlock>
