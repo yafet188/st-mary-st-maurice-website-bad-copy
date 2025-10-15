@@ -7,14 +7,15 @@ import StMaryVespersPicture from "../../public/Images/AdultsMinistries/StMaryVes
 
 // AdultsMinistries page: Displays adult ministry services with cards and images
 
-// Initialize the Urbanist font for consistent typography
+// Initialize the Urbanist font for consistent typography across headings and text
 const urbanist = Urbanist({
   subsets: ["latin"],
   display: "swap",
 });
 
 export default function AdultsMinistries() {
-  // List of adult ministry offerings displayed as cards
+  // List of adult ministry offerings displayed as cards.
+  // Each object in the array represents a unique ministry or service for adults.
   const products = [
     {
       id: 1,
@@ -86,7 +87,8 @@ export default function AdultsMinistries() {
 
   return (
     <>
-      {/* Hero section with main image and page title */}
+      {/* Hero section with main image and page title.
+          This visually introduces the Adults Ministries page and sets the theme. */}
       <Hero
         image={StMaryVespersPicture}
         altText="Vespers in St Mary's church"
@@ -102,7 +104,8 @@ export default function AdultsMinistries() {
         contentAlignment="center"
       />
 
-      {/* Section with image and introductory text */}
+      {/* Section with image and introductory text.
+          Provides a welcoming message and context for the adult ministries. */}
       <ImageTextBlock
         roundedText=""
         textColor=""
@@ -113,20 +116,23 @@ export default function AdultsMinistries() {
         altText="Fr. Athansius praying over newly wed couple in St. Mary's Church"
         bgColor="#FEFAF1"
       >
+        {/* Brief description of the adult ministries and their purpose. */}
         Enriching the spiritual journey of our adult and senior parishioners by
         engaging them with us through tailored programs that foster community
         connections and personal development.
       </ImageTextBlock>
-      {/* Main cards section for all adult ministries */}
+      {/* Main cards section for all adult ministries.
+          Displays all ministry offerings as interactive cards for easy exploration. */}
       <div className="w-full px-[100px] py-[100px] gap-[80px] flex flex-col items-center justify-center bg-[#171E34]">
-        {/* Title */}
+        {/* Title for the ministries card grid */}
         <h1
           className={`${urbanist.className} font-[700] text-[52px] leading-[120%] tracking-[-0.02em] text-white text-center`}
         >
           Adult Ministries
         </h1>
 
-        {/* Cards Section: Render each product as a ProductCard */}
+        {/* Cards Section: Render each product as a ProductCard.
+            Each card represents a distinct adult ministry, rendered dynamically from the products array. */}
         <div className="w-full max-w-[1312px] grid grid-cols-1 md:grid-cols-2 gap-[48px] justify-center">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
